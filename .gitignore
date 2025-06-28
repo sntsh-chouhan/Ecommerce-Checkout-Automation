@@ -1,0 +1,28 @@
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+
+# Optional: cache for older versions or future updates
+/playwright/.playwright-cache/
+# Logs and debug artifacts
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Environment files (if storing secrets, tokens, credentials)
+.env
+.env.*
+
+# Coverage reports (if you add code coverage tools later)
+coverage/
+
+# Editor and OS clutter (optional but clean)
+.vscode/
+.DS_Store
+Thumbs.db
