@@ -6,14 +6,14 @@ import { completeCheckout } from '../Flipkart/checkout.js';
 
 test('Flipkart Checkout Flow', async ({ page }) => {
     
-    await login(page);
-    await page.pause();
+    // await login(page);
+    // await page.pause();
 
-    // const productUrl = 'https://www.flipkart.com/alkarty-orchid-potting-mix-coco-chip-pumice-moss-grass-lecca-balls-charcoal-mixture/p/itmddc22ec2a3198';
-    // await addToCart(page, productUrl);
+    const productUrl = 'https://www.flipkart.com/alkarty-orchid-potting-mix-coco-chip-pumice-moss-grass-lecca-balls-charcoal-mixture/p/itmddc22ec2a3198';
+    await addToCart(page, productUrl);
 
-    // await fillAddress(page);
-    // const checkoutUrl = await completeCheckout(page);
+    await fillAddress(page);
+    const checkoutUrl = await completeCheckout(page);
 
 //   Optional: send checkoutUrl somewhere (DB, webhook, console etc.)
 });
