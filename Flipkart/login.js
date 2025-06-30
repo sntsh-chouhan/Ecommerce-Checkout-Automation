@@ -17,12 +17,16 @@ export async function login(page) {
     await page.getByRole('button', { name: 'Request OTP' }).click();
 
     console.log("Waiting 5 seconds for OTP SMS...");
-    await page.waitForTimeout(1000); // Give it a moment for SMS to arrive
+    await page.waitForTimeout(5000); // Give it a moment for SMS to arrive
 
     const otp = getLatestOtpFromSms();
+    console.log(otp)
     if (!otp) throw new Error("OTP not found");
 
-    await page.locator('.r4vIwl').first().fill(otp);
+    const otpDigits = otp.split('');
+    for (let i = 0; i < otpDigits.length; i++) {
+      await page.locator(`div:nth-child(${i + 1}) > .r4vIwl`).fill(otpDigits[i]);
+    }
 
     // After OTP entry
     console.log("Logged in");
