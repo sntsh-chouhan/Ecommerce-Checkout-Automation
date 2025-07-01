@@ -39,4 +39,5 @@ Additionally we can wrap this on am API endpoint for ease
 
 ## thoughts? 
 Share your thoughts, point out my mistakes, let me know where I can improve
+
 Peace out
