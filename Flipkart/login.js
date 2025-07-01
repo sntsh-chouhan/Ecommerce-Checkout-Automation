@@ -20,14 +20,14 @@ export async function login(page) {
     await page.waitForTimeout(5000); // Give it a moment for SMS to arrive
 
     const otp = getLatestOtpFromSms();
-    console.log(otp)
+    console.log("OTP = ",otp)
     if (!otp) throw new Error("OTP not found");
 
     const otpDigits = otp.split('');
     for (let i = 0; i < otpDigits.length; i++) {
       await page.locator(`div:nth-child(${i + 1}) > .r4vIwl`).fill(otpDigits[i]);
     }
-
+    await page.waitForTimeout(1000);
     // After OTP entry
     console.log("Logged in");
 }
