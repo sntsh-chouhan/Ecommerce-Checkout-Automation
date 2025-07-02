@@ -1,24 +1,84 @@
-# Ecommerce Checkout Automation
+# Ecommerce Checkout Automation (Flipkart)
 
-This is a playwright script to automate the checkout process on www.flipkart.com
+This project automates the checkout process on [Flipkart.com](https://www.flipkart.com) using Playwright and Node.js. It simulates a full purchase flow: logging in via OTP, adding a product to the cart, filling the address (if required), and returning the final checkout URL — all in under 25 seconds.
+
+---
 
 ## Setup
-1. PlayWright
-2. Node.js
-3. USB debugging for OTP capture
 
-## Running
-open a terminal in the root of the project folder
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v18+ recommended)
+- [Playwright](https://playwright.dev/)
+- A physical Android device with **USB Debugging enabled**
+- Flipkart account with valid credentials
+
+### Installation
 
 ```bash
-// to run the process in the background
-npx playwright test checkout.spec.js
+npm install
+npx playwright install
 
-// to run the process with visible window (this will take more time as time spent loading the window)
+```
+### OTP Handling (via ADB)
+To capture the OTP from your device:
+
+- Connect your Android phone via USB with USB debugging turned on
+
+- Make sure it's authorized (adb devices should list your device)
+
+- The script reads SMS using ADB shell to capture OTP from Flipkart
+
+##### Connect and Authorize Device via ADB
+```bash
+adb devices
+```
+You should see something like:
+```bash
+List of devices attached
+13a47fc2	device
+```
+
+### Setup Environment Variables
+Create .env file in the root:
+```bash
+GMAIL=your_email_or_phone
+PHONE=your_phone_number
+```
+Replace with your Flipkart login details.
+
+# Running the Script
+From the root directory of the project:
+
+### Run headless (faster)
+```bash
+npx playwright test checkout.spec.js
+```
+
+### Run with UI (for debugging, slower)
+```bash
 npx playwright test checkout.spec.js --headed
 ```
 
-## Output
+# Directory Structure (Simplified)
+
+```bash
+.
+├── Flipkart/
+│   ├── login.js
+│   ├── checkout.js
+|   ├── addressForm.js
+│   └── addToCart.js
+├── helper/
+|   └── getOTP.js
+├── tests/
+│   └── checkout.spec.js
+├── .env
+├── README.md
+├── package.json
+└── playwright.config.js
+```
+
+# Output
 This is on terminal
 ```bash
 Waiting 5 seconds for OTP SMS...
@@ -37,7 +97,7 @@ Additionally we can wrap this on am API endpoint for ease
 ![Screenshot from 2025-07-01 22-34-30](https://github.com/user-attachments/assets/e354d5d0-1e08-497d-bbe7-3b55d480cde3)
 
 
-## thoughts? 
+## Thoughts? 
 Share your thoughts, point out my mistakes, let me know where I can improve
 
 Peace out
